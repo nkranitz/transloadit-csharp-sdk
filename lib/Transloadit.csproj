@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3362EBC1-46C7-45DF-A519-90F269B319D8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Transloadit</RootNamespace>
+    <AssemblyName>Transloadit</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\build\lib\bin\Debug\</OutputPath>
+    <IntermediateOutputPath>..\build\lib\obj\Debug\</IntermediateOutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\build\lib\bin\Release\</OutputPath>
+    <IntermediateOutputPath>..\build\lib\obj\Release\</IntermediateOutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApiData.cs" />
+    <Compile Include="ApiRequest.cs" />
+    <Compile Include="ApiResponse.cs" />
+    <Compile Include="Assembly\Exceptions\AlreadyDefinedKeyException.cs" />
+    <Compile Include="Assembly\Exceptions\InvalidFieldKeyException.cs" />
+    <Compile Include="Assembly\IStep.cs" />
+    <Compile Include="Assembly\Step.cs" />
+    <Compile Include="Config\Exceptions\ConfigNotFoundException.cs" />
+    <Compile Include="Config\Exceptions\ConfigNotSetException.cs" />
+    <Compile Include="Config\TransloaditConfig.cs" />
+    <Compile Include="Config\TransloaditConfigCollection.cs" />
+    <Compile Include="Config\TransloaditConfigElement.cs" />
+    <Compile Include="Config\TransloaditConfigSection.cs" />
+    <Compile Include="Config\TransloaditLogConfigElement.cs" />
+    <Compile Include="Exceptions\MissingSchemeException.cs" />
+    <Compile Include="IApiRequest.cs" />
+    <Compile Include="IApiResponse.cs" />
+    <Compile Include="ITransloadit.cs" />
+    <Compile Include="Assembly\IAssemblyBuilder.cs" />
+    <Compile Include="ITransloaditJsonResponse.cs" />
+    <Compile Include="Log\Exceptions\LoggerClassNotFoundException.cs" />
+    <Compile Include="Log\Exceptions\UndefinedLoggerClassException.cs" />
+    <Compile Include="Log\ITransloaditLogger.cs" />
+    <Compile Include="Log\LoggerFactory.cs" />
+    <Compile Include="Log\TransloaditLogger.cs" />
+    <Compile Include="Assembly\AssemblyBuilder.cs" />
+    <Compile Include="TransloaditRequest.cs" />
+    <Compile Include="Exceptions\MissingHostException.cs" />
+    <Compile Include="Exceptions\MissingPathException.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Transloadit.cs" />
+    <Compile Include="TransloaditResponse.cs" />
+    <Compile Include="Utils.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>rd "$(ProjectDir)obj" /S /Q</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
