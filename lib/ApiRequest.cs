@@ -58,7 +58,7 @@ namespace Transloadit
             Get,
 
             /// <summary>
-            /// Used for GET requests
+            /// Used for POST requests
             /// </summary>
             [DescriptionAttribute("POST")]
             Post,
