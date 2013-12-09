@@ -22,7 +22,7 @@ namespace Transloadit
         /// <summary>
         /// Gets and sets the method of the current request
         /// </summary>
-        ApiRequest.RequestMethod Method { get; set; }
+        ApiRequestMethods.RequestMethod Method { get; set; }
 
         /// <summary>
         /// Gets and sets the absolute path of the current request

@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Net;
 using System.IO;
-using System.ComponentModel;
 using System.Collections.Specialized;
 using Transloadit.Log;
 
@@ -44,46 +43,6 @@ namespace Transloadit
 
         #endregion
 
-        #region Public enums
-
-        /// <summary>
-        /// Available request methods
-        /// </summary>
-        public enum RequestMethod
-        {
-            /// <summary>
-            /// Used for GET requests
-            /// </summary>
-            [DescriptionAttribute("GET")]
-            Get,
-
-            /// <summary>
-            /// Used for POST requests
-            /// </summary>
-            [DescriptionAttribute("POST")]
-            Post,
-
-            /// <summary>
-            /// Used for PUT requests
-            /// </summary>
-            [DescriptionAttribute("PUT")]
-            Put,
-
-            /// <summary>
-            /// Used for DELETE requests
-            /// </summary>
-            [DescriptionAttribute("DELETE")]
-            Delete,
-
-            /// <summary>
-            /// Used for PATCH requests
-            /// </summary>
-            [DescriptionAttribute("PATCH")]
-            Patch
-        }
-
-        #endregion
-
         #region Private attributes
 
         /// <summary>
@@ -108,7 +67,7 @@ namespace Transloadit
         /// <summary>
         /// Gets and sets the method of the current request
         /// </summary>
-        public RequestMethod Method { get; set; }
+        public ApiRequestMethods.RequestMethod Method { get; set; }
 
         /// <summary>
         /// Gets and sets the absolute path of the current request
@@ -129,7 +88,7 @@ namespace Transloadit
         /// </summary>
         public ApiRequest()
         {
-            Method = RequestMethod.Get;
+            Method = ApiRequestMethods.RequestMethod.Get;
         }
 
         #endregion
@@ -150,7 +109,7 @@ namespace Transloadit
 
             try
             {
-                bool hasBody = (Method == RequestMethod.Put || Method == RequestMethod.Post || Method == RequestMethod.Patch);
+                bool hasBody = (Method == ApiRequestMethods.RequestMethod.Put || Method == ApiRequestMethods.RequestMethod.Post || Method == ApiRequestMethods.RequestMethod.Patch);
                 if (hasBody)
                 {
                     string boundary = String.Format(BoundaryTemplate, DateTime.Now.Ticks.ToString("x"));

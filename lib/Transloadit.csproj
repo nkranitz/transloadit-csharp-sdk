@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="ApiData.cs" />
     <Compile Include="ApiRequest.cs" />
+    <Compile Include="ApiRequestMethods.cs" />
     <Compile Include="ApiResponse.cs" />
     <Compile Include="Assembly\Exceptions\AlreadyDefinedKeyException.cs" />
     <Compile Include="Assembly\Exceptions\InvalidFieldKeyException.cs" />

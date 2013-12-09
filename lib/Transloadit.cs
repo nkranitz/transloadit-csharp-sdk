@@ -107,7 +107,7 @@ namespace Transloadit
             {
                 Uri uri = new Uri((string)response.Data["assembly_url"]);
                 TransloaditRequest deleteRequest = Request();
-                deleteRequest.Method = TransloaditRequest.RequestMethod.Delete;
+                deleteRequest.Method = ApiRequestMethods.RequestMethod.Delete;
                 deleteRequest.Host = uri.Host;
                 deleteRequest.Path = uri.AbsolutePath;
                 TransloaditResponse deleteResponse = request.Execute();
@@ -143,7 +143,7 @@ namespace Transloadit
             bool.TryParse(Config.UseBoredInstance, out useBoredInstance);
             if (useBoredInstance)
             {
-                request.Method = TransloaditRequest.RequestMethod.Get;
+                request.Method = ApiRequestMethods.RequestMethod.Get;
                 request.Path = TransloaditRequest.BoredInstancePath;
 
                 TransloaditResponse boredInstance = (TransloaditResponse)RequestAndExecute(request);
@@ -154,7 +154,7 @@ namespace Transloadit
                 }
             }
 
-            request.Method = TransloaditRequest.RequestMethod.Post;
+            request.Method = ApiRequestMethods.RequestMethod.Post;
             request.Path = TransloaditRequest.AssemblyRoot;
 
             DateTime expirationDateTime = DateTime.UtcNow;
