@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 
 using NUnit.Framework;
@@ -16,8 +15,9 @@ namespace Tests
         [Test]
         public void ResizeImageExistingFile()
         {
-            ITransloadit transloadit = new Transloadit.Transloadit();
+            ITransloadit transloadit = new Transloadit.Transloadit("YOUR-PUBLIC-API-KEY", "YOUR-SECRET-KEY");
             IAssemblyBuilder assembly = new AssemblyBuilder();
+
             assembly.AddFile(System.IO.Path.GetFullPath("test.jpg"));
 
             IStep step = new Step();
@@ -32,14 +32,15 @@ namespace Tests
             TransloaditResponse response = transloadit.InvokeAssembly(assembly);
 
             Assert.IsTrue((string)response.Data["ok"] == "ASSEMBLY_COMPLETED" || (string)response.Data["ok"] == "ASSEMBLY_EXECUTING");
-            Assert.IsTrue(((System.Collections.ArrayList)(response.Data["uploads"])).Count > 0);
+            Assert.IsTrue(response.Data["uploads"].ToObject<List<Dictionary<string, object>>>().Count > 0);
         }
 
         [Test]
         public void ResizeImageNonExistingFile()
         {
-            ITransloadit transloadit = new Transloadit.Transloadit();
+            ITransloadit transloadit = new Transloadit.Transloadit("YOUR-PUBLIC-API-KEY", "YOUR-SECRET-KEY");
             IAssemblyBuilder assembly = new AssemblyBuilder();
+
             assembly.AddFile(@"test_non_existing.jpg");
 
             IStep step = new Step();
@@ -54,7 +55,7 @@ namespace Tests
             TransloaditResponse response = transloadit.InvokeAssembly(assembly);
 
             Assert.IsTrue((string)response.Data["ok"] == "ASSEMBLY_COMPLETED" || (string)response.Data["ok"] == "ASSEMBLY_EXECUTING");
-            Assert.IsTrue(((System.Collections.ArrayList)(response.Data["uploads"])).Count == 0);
+            Assert.IsTrue(response.Data["uploads"].ToObject<List<Dictionary<string, object>>>().Count == 0);
         }
     }
 }

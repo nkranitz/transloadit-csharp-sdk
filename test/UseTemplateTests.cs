@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 
 using NUnit.Framework;
 
 using Transloadit;
+using Transloadit.Assembly;
 
 namespace Tests
 {
@@ -15,8 +15,11 @@ namespace Tests
         [Test]
         public void ExistingTemplate()
         {
-            ITransloadit transloadit = new Transloadit.Transloadit();
-            Transloadit.Assembly.IAssemblyBuilder assembly = new Transloadit.Assembly.AssemblyBuilder();
+            ITransloadit transloadit = new Transloadit.Transloadit("YOUR-PUBLIC-API-KEY", "YOUR-SECRET-KEY");
+            IAssemblyBuilder assembly = new AssemblyBuilder();
+
+            assembly.SetTemplateID("YOUR-EXISTING-TEMPLATE-ID");
+
             TransloaditResponse response = transloadit.InvokeAssembly(assembly);
 
             Assert.IsTrue((string)response.Data["ok"] == "ASSEMBLY_COMPLETED" || (string)response.Data["ok"] == "ASSEMBLY_EXECUTING");
@@ -25,12 +28,14 @@ namespace Tests
         [Test]
         public void NonExistingTemplate()
         {
-            ITransloadit transloadit = new Transloadit.Transloadit();
-            Transloadit.Assembly.IAssemblyBuilder assembly = new Transloadit.Assembly.AssemblyBuilder();
-            assembly.SetTemplateID(transloadit.Config.DefaultTemplateID + "hack");
+            ITransloadit transloadit = new Transloadit.Transloadit("YOUR-PUBLIC-API-KEY", "YOUR-SECRET-KEY");
+            IAssemblyBuilder assembly = new AssemblyBuilder();
+
+            assembly.SetTemplateID("YOUR-NON-EXISTING-TEMPLATE-ID");
+
             TransloaditResponse response = transloadit.InvokeAssembly(assembly);
 
-            Assert.AreEqual("TEMPLATE_NOT_FOUND", response.Data["error"]);
+            Assert.AreEqual("TEMPLATE_NOT_FOUND", (string)(response.Data["error"]));
         }
     }
 }

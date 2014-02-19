@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Transloadit", "lib\Transloadit.csproj", "{3362EBC1-46C7-45DF-A519-90F269B319D8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Transloadit", "src\Transloadit.csproj", "{3362EBC1-46C7-45DF-A519-90F269B319D8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "test\Tests.csproj", "{E714034A-1BFB-43DA-832E-DEFFB84A8C1A}"
 EndProject
